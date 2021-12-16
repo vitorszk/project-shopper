@@ -1,12 +1,11 @@
-import React, { useState } from "react"
+import React, { useContext } from "react"
 import Form from "../../components/Form/Form"
 import ProductCard from "../../components/ProductCard/ProductCard"
-import useRequestData from "../../hooks/useRequestData"
+import { GlobalStateContext } from "../../global/GlobalStateContext"
 import { Container, Content, ProductsContainer, FormContainer } from "./styled"
 
-const HomePage = (props) => {
-    const products = useRequestData([], `http://localhost:3003/inventory`)
-    const {cart, setCart} = props
+const HomePage = () => {
+    const {cart, setCart, products} = useContext(GlobalStateContext)
 
     const addToCart = (productToAdd) => {
         const index = cart.findIndex((productInCart) => {

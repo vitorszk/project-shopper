@@ -1,16 +1,16 @@
-import * as React from 'react';
+import React, { useContext } from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import DatePicker from '../DatePicker/DatePicker';
-import ProductCard from '../ProductCard/ProductCard';
-import { PinDropSharp } from '@material-ui/icons';
+import { GlobalStateContext } from '../../global/GlobalStateContext';
 
 const Form = () => {
- 
-  // let cartPrice = 0
-  // for(let item of props.cart) {
-  //   cartPrice += item.price * item.quantity
-  // }
+  const { cart } = useContext(GlobalStateContext)
+
+  let cartPrice = 0
+  for (let item of cart) {
+    cartPrice += item.price * item.quantity
+  }
 
   return (
     <Box
@@ -23,8 +23,11 @@ const Form = () => {
     >
       <TextField id="outlined-basic" label="Nome" variant="outlined" />
       <DatePicker />
-      <p>//map do carrinho <b>xquantity</b></p> 
-      <p>Total: R$</p>
+      <p>{cart.map((product) => { return product.name })}</p>
+        <b>x{cart.map((product) => { return product.quantity })}</b>
+      
+      <br />
+      <p>Total: R${cartPrice.toFixed(2)}</p>
       <button>ENVIAR</button>
 
     </Box>

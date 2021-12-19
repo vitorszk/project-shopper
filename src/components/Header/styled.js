@@ -1,12 +1,8 @@
-import { Button } from '@mui/material'
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import styled from 'styled-components'
 
-export const StyledButton = styled(Button)`
-    height: 3rem;
-    width: 3rem;
-    border-radius: 100px;
+export const StyledButtonCart = styled(ShoppingCartIcon)`
     color: white;
-    margin: 10px;
 `
 
 export const Container = styled.header`
@@ -16,4 +12,8 @@ export const Container = styled.header`
     display: flex;
     justify-content: space-between;
     padding: 15px 10px;
+
+    .MuiButton-root {
+        border-radius: 500px;
+    }
 `

@@ -1,9 +1,8 @@
 import * as React from "react";
-
-import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { GlobalStateContext } from "../../globalState/GlobalStateContext";
-import { StyledButton, Container } from "./styled";
+import { Container, StyledButtonCart } from "./styled";
 import Logo from "../Logo";
+import { Button } from "@mui/material";
 
 const Header = () => {
   const { setIsOpenDrawer } = React.useContext(GlobalStateContext);
@@ -15,9 +14,9 @@ const Header = () => {
   return (
     <Container>
       <Logo />
-      <StyledButton color="inherit" onClick={toggleDrawer(true)}>
-        <ShoppingCartIcon fontSize="large"/>
-      </StyledButton>
+      <Button color="inherit" onClick={toggleDrawer(true)}>
+        <StyledButtonCart fontSize="large"/>
+      </Button>
     </Container>
   );
 };

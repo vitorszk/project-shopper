@@ -1,5 +1,4 @@
 import * as React from "react";
-import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
@@ -12,7 +11,7 @@ const ProductCard = ({ product, addToCart, removeProduct }) => {
 
   const quantity = cart.find((item) => item.id === product.id)?.qty || 0;
 
-  const isOutOfStock = (product.qty_stock - quantity) === 0
+  const isOutOfStock = product.qty_stock - quantity === 0;
 
   return (
     <StyledCard disabled={product.qty_stock === 0}>
@@ -32,7 +31,9 @@ const ProductCard = ({ product, addToCart, removeProduct }) => {
       {quantity ? (
         <StyledActions>
           <section>
-            <Button onClick={() => addToCart(product)} disabled={isOutOfStock}>+</Button>
+            <Button onClick={() => addToCart(product)} disabled={isOutOfStock}>
+              +
+            </Button>
             {quantity}
             <Button color="error" onClick={() => removeProduct(product)}>
               -
@@ -41,8 +42,12 @@ const ProductCard = ({ product, addToCart, removeProduct }) => {
         </StyledActions>
       ) : (
         <StyledActions>
-          <StyledButton variant="contained" disabled={product.qty_stock === 0} onClick={() => addToCart(product)}>
-            {product.qty_stock === 0 ? 'ESGOTADO' : 'ADICIONAR'}
+          <StyledButton
+            variant="contained"
+            disabled={product.qty_stock === 0}
+            onClick={() => addToCart(product)}
+          >
+            {product.qty_stock === 0 ? "ESGOTADO" : "ADICIONAR"}
           </StyledButton>
         </StyledActions>
       )}

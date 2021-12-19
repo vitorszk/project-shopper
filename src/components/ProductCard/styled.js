@@ -34,6 +34,7 @@ export const StyledCard = styled(Card)`
     height: 3rem;
     min-width: 3rem;
     width: 3rem;
+    margin: 0 20px;
   }
 `;
 
@@ -43,5 +44,7 @@ export const StyledActions = styled(CardActions)`
 `;
 
 export const StyledButton = styled(Button)`
-    color: white;
+    &.MuiButton-root {
+      color: white;
+    }
 `

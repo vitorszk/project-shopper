@@ -15,6 +15,8 @@ import {
   StyledButton,
 } from "./styled";
 import CustomizedSnackbars from "../Alert";
+import { Button } from "@mui/material";
+import useCart from "../../hooks/useCart";
 
 const useStyles = makeStyles({
   field: {
@@ -27,6 +29,7 @@ const useStyles = makeStyles({
 const Form = () => {
   const classes = useStyles();
 
+  const { addToCart, removeProduct } = useCart();
   const { cart, setIsOpenSnackBar } = useContext(GlobalStateContext);
 
   const onSubmitForm = (event) => {
@@ -38,13 +41,15 @@ const Form = () => {
       amount: Number(cartPrice.toFixed(2)),
     };
     newOrder(order)
-      .then(() => {setIsOpenSnackBar(true) 
-        clear()})
+      .then(() => {
+        setIsOpenSnackBar(true);
+        clear();
+      })
       .catch(() => console.log("não deu certo"));
-    
   };
 
   let cartPrice = 0;
+  let today = new Date();
 
   for (let item of cart) {
     cartPrice += item.price * item.qty;
@@ -58,7 +63,7 @@ const Form = () => {
   return (
     <>
       <CustomizedSnackbars />
-      <FormComponent >
+      <FormComponent>
         <h1>Resumo do Pedido</h1>
         <TextField
           name={"client_name"}
@@ -80,6 +85,7 @@ const Form = () => {
               }
               label="Data e Hora"
               renderInput={(params) => <TextField {...params} />}
+              minDateTime={today}
             />
           </Stack>
         </LocalizationProvider>
@@ -89,6 +95,10 @@ const Form = () => {
               <div>
                 <p>
                   <b>{product.qty}</b>x {product.name}
+                  <Button onClick={() => addToCart(product)}>+</Button>
+                  <Button color="error" onClick={() => removeProduct(product)}>
+                    -
+                  </Button>
                 </p>
                 <b>R${product.price}</b>
               </div>

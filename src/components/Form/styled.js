@@ -26,6 +26,7 @@ export const ProductList = styled.section`
     align-items: flex-end;
     padding: 0 10px;
   }
+
 `;
 
 export const Amount = styled.b`
@@ -36,6 +37,10 @@ export const Amount = styled.b`
 `;
 
 export const StyledButton = styled(Button)`
+    align-self: center;
+    width: 85%;
     font-size: 1.3rem;
-    color: white;
+    &.MuiButton-root {
+      color: white;
+    }
 `

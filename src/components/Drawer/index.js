@@ -89,7 +89,7 @@ function SwipeableEdgeDrawer(props) {
         >
           <Puller />
           <Typography sx={{ p: 2, color: "text.secondary" }}>
-            <b>Items: {results.length === 0 ? "0" : results}</b>
+            <b>ITENS NO CARRINHO: {results.length === 0 ? "0" : results}</b>
           </Typography>
         </StyledBox>
       </StyledDrawer>

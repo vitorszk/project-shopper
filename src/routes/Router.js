@@ -1,20 +1,18 @@
-import React, { useState } from "react"
-import { BrowserRouter, Routes, Route } from "react-router-dom"
-import Form from "../components/Form/Form"
-import Header from "../components/Header/Header"
-import ErrorPage from "../pages/ErrorPage/ErrorPage"
-import HomePage from "../pages/HomePage/HomePage"
+import React from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Header from "../components/Header";
+import ErrorPage from "../pages/ErrorPage";
+import HomePage from "../pages/HomePage";
 
 const Router = () => {
-    return (
-        <BrowserRouter>
-        <Header />
-            <Routes>
-                <Route exact path="/" element={<HomePage/>} />
-                <Route element ={<ErrorPage />} />
-            </Routes>
-        </BrowserRouter>
-    )
-}
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route exact path="/" element={<HomePage />} />
+        <Route element={<ErrorPage />} />
+      </Routes>
+    </BrowserRouter>
+  );
+};
 
-export default Router
+export default Router;

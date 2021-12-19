@@ -1,7 +1,7 @@
-import { ThemeProvider } from "@material-ui/core/styles";
+import { ThemeProvider } from "@mui/material/styles";
 import React from "react"
 import theme from "./constants/theme";
-import { GlobalState } from "./global/GlobalState";
+import { GlobalState } from "./globalState/GlobalState";
 import Router from "./routes/Router";
 
 const App = () => {

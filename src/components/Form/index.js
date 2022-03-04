@@ -36,7 +36,7 @@ const Form = () => {
     const { client_name, delivery_date } = form;
     const order = {
       client_name,
-      delivery_date: delivery_date.toISOString(),
+      delivery_date: new Date(delivery_date).toISOString(),
       products: cart,
       amount: Number(cartPrice.toFixed(2)),
     };
@@ -45,11 +45,13 @@ const Form = () => {
         setIsOpenSnackBar(true);
         clear();
       })
-      .catch(() => console.log("não deu certo"));
   };
 
   let cartPrice = 0;
-  let today = new Date();
+  let today = new Intl.DateTimeFormat("pt-BR", {
+    dateStyle: "short",
+    timeStyle: "medium",
+  }).format(new Date());
 
   for (let item of cart) {
     cartPrice += item.price * item.qty;
@@ -57,7 +59,7 @@ const Form = () => {
 
   const [form, onChange, clear] = useForm({
     client_name: "",
-    delivery_date: Date.now(),
+    delivery_date: today,
   });
 
   return (
@@ -91,11 +93,18 @@ const Form = () => {
         </LocalizationProvider>
         <ProductList>
           {cart.map((product) => {
+            const isOutOfStock = product.qty_stock - product.qty === 0;
+
             return (
               <div>
                 <p>
                   <b>{product.qty}</b>x {product.name}
-                  <Button onClick={() => addToCart(product)}>+</Button>
+                  <Button
+                    onClick={() => addToCart(product)}
+                    disabled={isOutOfStock}
+                  >
+                    +
+                  </Button>
                   <Button color="error" onClick={() => removeProduct(product)}>
                     -
                   </Button>

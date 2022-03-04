@@ -31,12 +31,12 @@ const ProductCard = ({ product, addToCart, removeProduct }) => {
       {quantity ? (
         <StyledActions>
           <section>
-            <Button onClick={() => addToCart(product)} disabled={isOutOfStock}>
-              +
-            </Button>
-            {quantity}
             <Button color="error" onClick={() => removeProduct(product)}>
               -
+            </Button>
+            {quantity}
+            <Button onClick={() => addToCart(product)} disabled={isOutOfStock}>
+              +
             </Button>
           </section>
         </StyledActions>

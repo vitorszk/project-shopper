@@ -1,6 +1,6 @@
-# Getting Started with Create React App
+# Projeto Shopper
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Link da aplicação rodando: [Surge](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
 

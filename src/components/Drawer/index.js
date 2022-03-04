@@ -1,41 +1,19 @@
 import * as React from "react";
 import { Global } from "@emotion/react";
-import { styled } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
-import { grey } from "@mui/material/colors";
-import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Form from "../Form";
-import { StyledDrawer } from "./styled";
+import SwipeableDrawer from "@mui/material/SwipeableDrawer";
 import { GlobalStateContext } from "../../globalState/GlobalStateContext";
+import { Puller, Root, StyledBox } from "./styled";
 
 const drawerBleeding = 56;
 
-const Root = styled("div")(({ theme }) => ({
-  height: "100%",
-  backgroundColor:
-    theme.palette.mode === "light"
-      ? grey[100]
-      : theme.palette.background.default,
-}));
-
-const StyledBox = styled(Box)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === "light" ? "#fff" : grey[800],
-}));
-
-const Puller = styled(Box)(({ theme }) => ({
-  width: 100,
-  height: 6,
-  backgroundColor: theme.palette.mode === "light" ? grey[300] : grey[900],
-  borderRadius: 3,
-  position: "absolute",
-  top: 8,
-  left: "calc(50% - 15px)",
-}));
 
 function SwipeableEdgeDrawer(props) {
   const { window } = props;
-  const { cart, isOpenDrawer, setIsOpenDrawer } = React.useContext(GlobalStateContext);
+  const { cart, isOpenDrawer, setIsOpenDrawer } =
+    React.useContext(GlobalStateContext);
 
   let results = 0;
 
@@ -61,7 +39,7 @@ function SwipeableEdgeDrawer(props) {
           },
         }}
       />
-      <StyledDrawer
+      <SwipeableDrawer
         container={container}
         anchor="bottom"
         open={isOpenDrawer}
@@ -86,11 +64,11 @@ function SwipeableEdgeDrawer(props) {
           }}
         >
           <Puller />
-          <Typography sx={{ p: 2, color: "text.secondary" }}>
+          <Typography sx={{ p: 2, color: "text.secondary" }}  >
             <b>ITENS NO CARRINHO: {results.length === 0 ? "0" : results}</b>
           </Typography>
         </StyledBox>
-      </StyledDrawer>
+      </SwipeableDrawer>
     </Root>
   );
 }
